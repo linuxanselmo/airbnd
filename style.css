@@ -1,0 +1,25 @@
+.logo{
+	font-family: "Berlin Sans FB";
+	color: rgb(255, 26, 60) !important;
+    font-size: 200%;
+}
+#imgLogo{
+    width: 45px;
+}
+.borda{
+	padding: 0 5%;
+}
+nav{
+	background-color: rgb(255, 255, 255);
+}
+.menu a{
+	color: rgb(0,0,0);
+}
+
+.menu a:hover{
+	background-color: rgb(240,240,240);
+	border-radius: 20px;
+}
+.conteudo{
+	margin-top:70px;
+}
