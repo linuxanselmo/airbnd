@@ -5,7 +5,7 @@ let totalPaginas = 1;
 
 function capturaDados(){
     //criando a caputra dos dados e um try catch para proteção de erros
-    try {
+
         fetch(url)
         .then(response => response.json())
         .then(data => {
@@ -14,24 +14,37 @@ function capturaDados(){
                     if (!tipos.includes(item.property_type)){
                         tipos.push(item.property_type);
                     }
+                    item.priceFormatado = formatarPreco(item.price);
                     return item;
                 });
         })
-    } catch (e) {
-        console.log(e);
+        .catch (err => {
+        })
     }
-}
+
 
 function formatarPreco(valor){
-    const valorFormatado = new Intl.MumberFormat( 'pt-BR', {
+    const valorFormatado = new Intl.NumberFormat( 'pt-BR', {
         styele: 'currency',
         currency: 'BRL'
     }).format(valor);
     return valorFormatado;
 }
-let dados = capturaDados();
+ capturaDados();
 
-function autoTipo(){
+ let dados = [...quartos];
+// carregandos os tipos de hospedagens no select
+ $('#tipo').click(function(){
+    var tipoLocal = [...tipos];
+    var options = '<option value="#">Tipo de Aluguel</option>';
+    for (let i = 0; i < tipoLocal.length; i++) {
+        options += `<option value="${tipoLocal[i]}" >${tipoLocal[i]}</option>`;
+
+    }
+    $('#tipo').html(options).show;
+ });
+
     console.log(tipos);
-    console.log(dados.name);
-}
+    console.log(quartos);
+    console.log(dados.priceFormatado);
+
