@@ -76,7 +76,7 @@ function formatarPreco(valor){
 
  }
 
- function tipagem(indice)
+ function tipagem(indice){
     if (tipos[indice]){
         const filtrado = dadosbrutos.filter( dados => dados.property_type === tipos[indice]);
         criarQuartos(filtrado);
