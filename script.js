@@ -16,7 +16,9 @@ function capturaDados(){
                 item.priceFormatado = formatarPreco(item.price);
                 return item;
             });
-            criarQuartos();
+            criarfiltro();
+
+            criarQuartos(dadosbrutos);
     })
     .catch (err => {
     })
@@ -37,22 +39,28 @@ function formatarPreco(valor){
  console.log(dadosbrutos);
  console.log(dadosbrutos.priceFormatado);
 
-// carregandos os tipos de hospedagens no select
- $('#tipo').click(function(){
-    var tipoLocal = [...tipos];
-    var options = '<option value="#">Tipo de Aluguel</option>';
-    for (let i = 0; i < tipoLocal.length; i++) {
-        options += `<option value="${tipoLocal[i]}" >${tipoLocal[i]}</option>`;
+// carregandos os tipos de hospedagens
+ function criarfiltro(){
+    let filtro = '';
+    tipos.map((nome, indice) => {
+        filtro +=`
+        <a href="javascript:tipagem(${indice})" class="btn btn-info botoaofiltro filtro-${indice}">${nome}</a>
+        `;
+    })
+    const barraHtml =`
+    ${filtro}
+        <a href="index.html" class="btn btn-warning botaofiltro limpar">Limpar</a>
+    `;
+    const containerfiltro = document.getElementById('filtros');
+    containerfiltro.innerHTML = barraHtml;
+ };
 
-    }
-    $('#tipo').html(options).show;
- });
 
- function criarQuartos(){
+ function criarQuartos(dados){
     const conteudoQuartos = document.getElementById('criarQuartos');
     conteudoQuartos.innerHTML = '';
 
-    dadosbrutos.map(quarto=> {
+    dados.map(quarto=> {
       const quartoHtml = `
       <div class="quarto">
         <figure>
@@ -68,3 +76,9 @@ function formatarPreco(valor){
 
  }
 
+ function tipagem(indice)
+    if (tipos[indice]){
+        const filtrado = dadosbrutos.filter( dados => dados.property_type === tipos[indice]);
+        criarQuartos(filtrado);
+    }
+ }

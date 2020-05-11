@@ -78,6 +78,26 @@ nav{
 	overflow: hidden;
 }
 
+/* filtros */
+.filtros .container{
+	margin-top: 50px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	flex-wrap: wrap;
+}
+.filtros .container a{
+	border: black 1px solid;
+	border-radius: 10px;
+	margin-right: 10px;
+	margin-bottom: 5px;
+	padding: 10px 15px;
+	cursor: pointer;
+	text-decoration: none;
+}
+.botoaofiltro .hide{
+	display: none;
+}
 /* trabalhando as resoluções de telas */
 @media only screen and (min-width: 468px) {
 	.quartos .container {
